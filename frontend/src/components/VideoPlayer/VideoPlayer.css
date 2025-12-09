@@ -1,0 +1,130 @@
+.video-player {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  background: #000;
+  overflow: hidden;
+}
+
+.video-element {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.video-controls {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: linear-gradient(to top, rgba(0,0,0,0.8), transparent);
+  padding: 20px;
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+
+.video-controls.show {
+  opacity: 1;
+}
+
+.progress-bar {
+  width: 100%;
+  height: 5px;
+  background: rgba(255,255,255,0.3);
+  cursor: pointer;
+  margin-bottom: 15px;
+  border-radius: 5px;
+  overflow: hidden;
+}
+
+.progress-filled {
+  height: 100%;
+  background: var(--netflix-red);
+  transition: width 0.1s;
+}
+
+.controls-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.controls-left,
+.controls-right {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.control-btn {
+  background: none;
+  color: white;
+  font-size: 18px;
+  padding: 8px 12px;
+  border-radius: 4px;
+  transition: background 0.2s;
+}
+
+.control-btn:hover {
+  background: rgba(255,255,255,0.1);
+}
+
+.volume-slider {
+  width: 80px;
+  cursor: pointer;
+}
+
+.time-display {
+  font-size: 14px;
+  color: white;
+}
+
+.menu-container {
+  position: relative;
+}
+
+.quality-menu {
+  position: absolute;
+  bottom: 100%;
+  right: 0;
+  background: rgba(0,0,0,0.9);
+  border-radius: 4px;
+  padding: 8px;
+  margin-bottom: 10px;
+  min-width: 100px;
+}
+
+.quality-menu div {
+  padding: 8px 12px;
+  cursor: pointer;
+  border-radius: 2px;
+  transition: background 0.2s;
+}
+
+.quality-menu div:hover {
+  background: rgba(255,255,255,0.1);
+}
+
+@media (max-width: 768px) {
+  .video-controls {
+    padding: 10px;
+  }
+
+  .controls-left,
+  .controls-right {
+    gap: 8px;
+  }
+
+  .control-btn {
+    font-size: 16px;
+    padding: 6px 10px;
+  }
+
+  .volume-slider {
+    width: 60px;
+  }
+
+  .time-display {
+    font-size: 12px;
+  }
+}

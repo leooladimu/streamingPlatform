@@ -1,0 +1,86 @@
+.watch-page {
+  min-height: 100vh;
+  background: var(--netflix-black);
+}
+
+.back-button {
+  position: fixed;
+  top: 80px;
+  left: 20px;
+  z-index: 100;
+  background: rgba(0, 0, 0, 0.7);
+  color: white;
+  padding: 10px 20px;
+  border-radius: 4px;
+  font-size: 16px;
+  transition: background 0.2s;
+}
+
+.back-button:hover {
+  background: rgba(0, 0, 0, 0.9);
+}
+
+.watch-content {
+  padding: 40px 50px;
+}
+
+.video-details {
+  max-width: 900px;
+  margin-bottom: 60px;
+}
+
+.video-details h1 {
+  font-size: 36px;
+  margin-bottom: 15px;
+}
+
+.video-meta {
+  display: flex;
+  gap: 15px;
+  margin-bottom: 20px;
+  font-size: 14px;
+}
+
+.rating {
+  border: 1px solid white;
+  padding: 4px 8px;
+  border-radius: 2px;
+}
+
+.description {
+  font-size: 16px;
+  line-height: 1.6;
+  color: rgba(255, 255, 255, 0.8);
+  margin-bottom: 20px;
+}
+
+.video-genres,
+.video-cast,
+.video-director {
+  margin-bottom: 10px;
+  color: rgba(255, 255, 255, 0.8);
+}
+
+.video-genres strong,
+.video-cast strong,
+.video-director strong {
+  color: white;
+  margin-right: 10px;
+}
+
+@media (max-width: 768px) {
+  .back-button {
+    top: 60px;
+    left: 10px;
+    padding: 8px 16px;
+    font-size: 14px;
+  }
+
+  .watch-content {
+    padding: 20px;
+  }
+
+  .video-details h1 {
+    font-size: 24px;
+  }
+}

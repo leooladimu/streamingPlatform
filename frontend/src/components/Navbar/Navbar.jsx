@@ -32,7 +32,11 @@ const Navbar = () => {
           >
             <img 
               src={user?.avatar || 'https://occ-0-2430-2433.1.nflxso.net/dnm/api/v6/K6hjPJd6cR6FpVELC5Pd6ovHRSk/AAAABbme8JMz4rEKFJhtzpOKWFJ_6qX-0y5wwWyYvBhWS0VKFLa289dZ5zvRBggmFVWVPL2AAYE8xevD4jjLZjWumNo.png?r=a41'} 
-              alt="Profile" 
+              alt="Profile"
+              onError={(e) => {
+                e.target.onerror = null;
+                e.target.src = 'https://occ-0-2430-2433.1.nflxso.net/dnm/api/v6/K6hjPJd6cR6FpVELC5Pd6ovHRSk/AAAABbme8JMz4rEKFJhtzpOKWFJ_6qX-0y5wwWyYvBhWS0VKFLa289dZ5zvRBggmFVWVPL2AAYE8xevD4jjLZjWumNo.png?r=a41';
+              }}
             />
             <span>▼</span>
           </button>

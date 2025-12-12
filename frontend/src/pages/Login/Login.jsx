@@ -55,7 +55,7 @@ const Login = () => {
             </button>
           </form>
           <p className="auth-switch">
-            New to StreamFlix? <Link to="/register">Sign up now</Link>
+            New to ỌLEOFLIX? <Link to="/register">Sign up now</Link>
           </p>
         </div>
       </div>

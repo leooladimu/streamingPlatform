@@ -30,7 +30,7 @@ const Navbar = () => {
             className="profile-btn"
             onClick={() => setShowProfileMenu(!showProfileMenu)}
           >
-            <img src={user?.avatar} alt="Profile" />
+            <img src={user?.avatar || 'https://i.imgur.com/6VBx3io.png'} alt="Profile" />
             <span>▼</span>
           </button>
           {showProfileMenu && (

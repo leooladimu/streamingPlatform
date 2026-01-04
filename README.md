@@ -1,4 +1,4 @@
-# 🎬 StreamFlix - Netflix-Style Video Streaming Platform
+# 🎬 Ọleoflix - Netflix-Style Video Streaming Platform
 
 A full-stack Netflix clone built with the MERN stack (MongoDB, Express, React, Node.js) featuring video streaming, user authentication, personalized recommendations, and a responsive Netflix-style UI.
 

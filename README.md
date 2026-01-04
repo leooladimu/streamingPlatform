@@ -12,7 +12,7 @@ npm install -g vercel
 ./deploy.sh
 ```
 
-📖 For detailed deployment instructions, see [README-DEPLOYMENT.md](./README-DEPLOYMENT.md)
+📖 For detailed deployment instructions, please see [README-DEPLOYMENT.md](./README-DEPLOYMENT.md)
 
 ## ✨ Features
 

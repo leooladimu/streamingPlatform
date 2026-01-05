@@ -1,4 +1,4 @@
-# Deployment Guide - Streaming Platform
+# Deployment Guide - Ọleoflix Streaming Platform
 
 This guide will help you deploy your streaming platform to production using Vercel.
 

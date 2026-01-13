@@ -25,7 +25,7 @@ const videoSchema = new mongoose.Schema({
   genre: [{
     type: String,
     required: true,
-    enum: ['Action', 'Comedy', 'Drama', 'Horror', 'Sci-Fi', 'Romance', 'Thriller', 'Documentary', 'Animation', 'Fantasy']
+    enum: ['Action', 'Comedy', 'Drama', 'Horror', 'Sci-Fi', 'Romance', 'Thriller', 'Documentary', 'Animation', 'Fantasy', 'Pets']
   }],
   cast: [String],
   director: String,

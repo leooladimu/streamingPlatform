@@ -6,125 +6,118 @@ dotenv.config();
 
 const sampleVideos = [
   {
-    title: 'Stranger Things',
-    description: 'When a young boy vanishes, a small town uncovers a mystery involving secret experiments, terrifying supernatural forces and one strange little girl.',
-    videoUrl: 'https://sample-videos.com/video123/mp4/720/big_buck_bunny_720p_1mb.mp4',
-    thumbnail: 'https://images.unsplash.com/photo-1594909122845-11baa439b7bf?w=800',
-    duration: 3600,
-    genre: 'Sci-Fi',
-    releaseYear: 2016,
-    rating: 'TV-14',
-    cast: ['Millie Bobby Brown', 'Finn Wolfhard', 'Winona Ryder'],
-    director: 'The Duffer Brothers',
+    title: 'Dog Adventures in the Livingroom',
+    description: 'Watch our puppy trying to walk!',
+    videoUrl: 'https://res.cloudinary.com/di4vcvgtk/video/upload/v1768273395/-5555928177450095242_qjvxuc.mp4', 
+    thumbnail: 'https://res.cloudinary.com/di4vcvgtk/video/upload/v1768273395/-5555928177450095242_qjvxuc.jpg',
+    duration: 6, 
+    genre: 'Pets',
+    releaseYear: 2026,
+    rating: 'G',
+    cast: ['Penny'],
+    director: 'Leo Oladimu',
     quality: [
-      { resolution: '360p', url: 'https://sample-videos.com/video123/mp4/360/big_buck_bunny_360p_1mb.mp4' },
-      { resolution: '720p', url: 'https://sample-videos.com/video123/mp4/720/big_buck_bunny_720p_1mb.mp4' },
-      { resolution: '1080p', url: 'https://sample-videos.com/video123/mp4/1080/big_buck_bunny_1080p_1mb.mp4' }
-    ],
-    subtitles: [
-      { language: 'English', url: 'https://example.com/subtitles/en.vtt' },
-      { language: 'Spanish', url: 'https://example.com/subtitles/es.vtt' }
+      { resolution: '720p', url: 'https://res.cloudinary.com/di4vcvgtk/video/upload/v1768273395/-5555928177450095242_qjvxuc.mp4' }
     ],
     featured: true,
     trending: true
   },
   {
-    title: 'The Witcher',
-    description: 'Geralt of Rivia, a solitary monster hunter, struggles to find his place in a world where people often prove more wicked than beasts.',
-    videoUrl: 'https://sample-videos.com/video123/mp4/720/big_buck_bunny_720p_2mb.mp4',
-    thumbnail: 'https://images.unsplash.com/photo-1518676590629-3dcbd9c5a5c9?w=800',
-    duration: 3300,
-    genre: 'Fantasy',
-    releaseYear: 2019,
-    rating: 'TV-MA',
-    cast: ['Henry Cavill', 'Anya Chalotra', 'Freya Allan'],
-    director: 'Lauren Schmidt Hissrich',
+    title: 'Government Atrocity',
+    description: 'USP Lewisburg',
+    videoUrl: 'https://res.cloudinary.com/di4vcvgtk/video/upload/v1768273872/IMG_1289_yqwarr.mp4',
+    thumbnail: 'https://res.cloudinary.com/di4vcvgtk/video/upload/v1768273872/IMG_1289_yqwarr.jpg',
+    duration: 10,
+    genre: 'Pets',
+    releaseYear: 2026,
+    rating: 'G',
+    cast: ['Dog'],
+    director: 'Leo Oladimu',
     quality: [
-      { resolution: '720p', url: 'https://sample-videos.com/video123/mp4/720/big_buck_bunny_720p_2mb.mp4' },
-      { resolution: '1080p', url: 'https://sample-videos.com/video123/mp4/1080/big_buck_bunny_1080p_2mb.mp4' }
+      { resolution: '720p', url: 'https://res.cloudinary.com/di4vcvgtk/video/upload/v1768273872/IMG_1289_yqwarr.mp4' }
     ],
     featured: true,
     trending: true
   },
   {
-    title: 'Breaking Bad',
-    description: 'A high school chemistry teacher diagnosed with inoperable lung cancer turns to manufacturing and selling methamphetamine.',
-    videoUrl: 'https://sample-videos.com/video123/mp4/720/big_buck_bunny_720p_3mb.mp4',
-    thumbnail: 'https://images.unsplash.com/photo-1536440136628-849c177e76a1?w=800',
-    duration: 2820,
+    title: 'Balmy Boston Spring',
+    description: 'A bike ride home from work in the Bean.',
+    videoUrl: 'https://res.cloudinary.com/di4vcvgtk/video/upload/v1768273681/IMG_2852_amhtnx.mp4',
+    thumbnail: 'https://res.cloudinary.com/di4vcvgtk/video/upload/v1768273681/IMG_2852_amhtnx.jpg',
+    duration: 8,
     genre: 'Drama',
-    releaseYear: 2008,
+    releaseYear: 2021,
     rating: 'TV-MA',
-    cast: ['Bryan Cranston', 'Aaron Paul', 'Anna Gunn'],
-    director: 'Vince Gilligan',
+    cast: ['Leo Ọládimú'],
+    director: 'Leo Ọládimú',
     quality: [
-      { resolution: '720p', url: 'https://sample-videos.com/video123/mp4/720/big_buck_bunny_720p_3mb.mp4' },
-      { resolution: '1080p', url: 'https://sample-videos.com/video123/mp4/1080/big_buck_bunny_1080p_3mb.mp4' }
+      { resolution: '720p', url: 'https://res.cloudinary.com/di4vcvgtk/video/upload/v1768273681/IMG_2852_amhtnx.mp4' },
+      { resolution: '1080p', url: 'https://res.cloudinary.com/di4vcvgtk/video/upload/v1768273681/IMG_2852_amhtnx.mp4' }
     ],
     trending: true
   },
   {
-    title: 'Inception',
-    description: 'A thief who steals corporate secrets through the use of dream-sharing technology is given the inverse task of planting an idea.',
-    videoUrl: 'https://sample-videos.com/video123/mp4/720/big_buck_bunny_720p_4mb.mp4',
-    thumbnail: 'https://images.unsplash.com/photo-1485846234645-a62644f84728?w=800',
+    title: 'Alley Cat Race, PO Square, Boston, MA',
+    description: 'Cars suck!',
+    videoUrl: 'https://res.cloudinary.com/di4vcvgtk/video/upload/v1768273979/IMG_1777_hekisz.mp4',
+    thumbnail: 'https://res.cloudinary.com/di4vcvgtk/video/upload/v1768273979/IMG_1777_hekisz.jpg',
     duration: 8880,
     genre: 'Action',
     releaseYear: 2010,
     rating: 'PG-13',
     cast: ['Leonardo DiCaprio', 'Joseph Gordon-Levitt', 'Elliot Page'],
-    director: 'Christopher Nolan',
+    director: 'Leo Ọládimú',
     quality: [
-      { resolution: '720p', url: 'https://sample-videos.com/video123/mp4/720/big_buck_bunny_720p_4mb.mp4' },
-      { resolution: '1080p', url: 'https://sample-videos.com/video123/mp4/1080/big_buck_bunny_1080p_4mb.mp4' }
+      { resolution: '720p', url: 'https://res.cloudinary.com/di4vcvgtk/video/upload/v1768273979/IMG_1777_hekisz.mp4' },
+      { resolution: '1080p', url: 'https://res.cloudinary.com/di4vcvgtk/video/upload/v1768273979/IMG_1777_hekisz.mp4' }
     ]
   },
   {
-    title: 'Black Mirror',
-    description: 'An anthology series exploring a twisted, high-tech multiverse where humanity\'s greatest innovations clash with darkest instincts.',
-    videoUrl: 'https://sample-videos.com/video123/mp4/720/big_buck_bunny_720p_5mb.mp4',
-    thumbnail: 'https://images.unsplash.com/photo-1574267432644-f74f5841e8a3?w=800',
-    duration: 3000,
+    title: 'Bike Messengers of Justice',
+    description: 'Fixies are the best!',
+    videoUrl: 'https://res.cloudinary.com/di4vcvgtk/video/upload/v1768274105/IMG_2444_aajt0o.mp4',
+    thumbnail: 'https://res.cloudinary.com/di4vcvgtk/video/upload/v1768274105/IMG_2444_aajt0o.jpg',
+    duration: 11,
     genre: 'Sci-Fi',
-    releaseYear: 2011,
+    releaseYear: 2023,
     rating: 'TV-MA',
-    cast: ['Jesse Plemons', 'Cristin Milioti', 'Jimmi Simpson'],
+    cast: ['Nat Rosevear', 'Cristin Milioti', 'Jimmi Simpson'],
     director: 'Charlie Brooker',
     quality: [
-      { resolution: '720p', url: 'https://sample-videos.com/video123/mp4/720/big_buck_bunny_720p_5mb.mp4' }
+      { resolution: '720p', url: 'https://res.cloudinary.com/di4vcvgtk/video/upload/v1768274105/IMG_2444_aajt0o.mp4' }
     ],
     trending: true
   },
   {
-    title: 'The Crown',
-    description: 'Follows the political rivalries and romance of Queen Elizabeth II\'s reign and the events that shaped the second half of the 20th century.',
-    videoUrl: 'https://sample-videos.com/video123/mp4/720/big_buck_bunny_720p_6mb.mp4',
-    thumbnail: 'https://images.unsplash.com/photo-1478720568477-152d9b164e26?w=800',
-    duration: 3600,
+    title: 'Heather Heyer Way',
+    description: "Heather's mom said that if you're not outraged, you're not paying attention.",
+    videoUrl: 'https://res.cloudinary.com/di4vcvgtk/video/upload/v1768273801/IMG_1313_e7hien.mp4',
+    thumbnail: 'https://res.cloudinary.com/di4vcvgtk/video/upload/v1768273801/IMG_1313_e7hien.jpg',
+    duration: 6,
     genre: 'Drama',
-    releaseYear: 2016,
+    releaseYear: 2023,
     rating: 'TV-MA',
-    cast: ['Claire Foy', 'Olivia Colman', 'Imelda Staunton'],
-    director: 'Peter Morgan',
+    cast: ['Leo Ọládimú', 'Cleopatra Ọládimú'],
+    director: 'Leo Ọládimú',
     quality: [
-      { resolution: '720p', url: 'https://sample-videos.com/video123/mp4/720/big_buck_bunny_720p_6mb.mp4' },
-      { resolution: '1080p', url: 'https://sample-videos.com/video123/mp4/1080/big_buck_bunny_1080p_6mb.mp4' }
+      { resolution: '720p', url: 'https://res.cloudinary.com/di4vcvgtk/video/upload/v1768273801/IMG_1313_e7hien.mp4' },
+      { resolution: '1080p', url: 'https://res.cloudinary.com/di4vcvgtk/video/upload/v1768273801/IMG_1313_e7hien.mp4' }
     ]
   },
   {
-    title: 'Squid Game',
-    description: 'Hundreds of cash-strapped contestants accept an invitation to compete in children\'s games for a tempting prize, but the stakes are deadly.',
-    videoUrl: 'https://sample-videos.com/video123/mp4/720/big_buck_bunny_720p_7mb.mp4',
-    thumbnail: 'https://images.unsplash.com/photo-1594908900066-3f47337549d8?w=800',
-    duration: 3240,
-    genre: 'Thriller',
-    releaseYear: 2021,
+    title: 'Lynching Museum, Montgomery, Alabama',
+    description: "The National Memorial for Peace and Justice is the nation's first memorial dedicated to the legacy of enslaved Black people and victims of racial terror lynching.",
+    videoUrl: 'https://res.cloudinary.com/di4vcvgtk/video/upload/v1768273552/IMG_1325_xovpz8.mp4',
+    thumbnail: 'https://res.cloudinary.com/di4vcvgtk/video/upload/v1768273552/IMG_1325_xovpz8.jpg',
+    duration: 4,
+    genre: 'Drama',
+    releaseYear: 2022,
     rating: 'TV-MA',
-    cast: ['Lee Jung-jae', 'Park Hae-soo', 'Wi Ha-joon'],
-    director: 'Hwang Dong-hyuk',
+    cast: ['Leo Ọládimú', 'Cleopatra Ọládimú'],
+    director: 'Leo Ọládimú',
     quality: [
-      { resolution: '720p', url: 'https://sample-videos.com/video123/mp4/720/big_buck_bunny_720p_7mb.mp4' },
-      { resolution: '1080p', url: 'https://sample-videos.com/video123/mp4/1080/big_buck_bunny_1080p_7mb.mp4' }
+      { resolution: '720p', url: 'https://res.cloudinary.com/di4vcvgtk/video/upload/v1768273552/IMG_1325_xovpz8.mp4' },
+      { resolution: '1080p', url: 'https://res.cloudinary.com/di4vcvgtk/video/upload/v1768273552/IMG_1325_xovpz8.mp4' }
     ],
     featured: true,
     trending: true

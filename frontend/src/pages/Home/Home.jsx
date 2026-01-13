@@ -16,18 +16,29 @@ const Home = () => {
 
   const fetchData = async () => {
     try {
-      const [featuredRes, trendingRes, recsRes] = await Promise.all([
+      // Fetch featured and trending (public endpoints)
+      const [featuredRes, trendingRes] = await Promise.all([
         api.get('/videos/featured'),
-        api.get('/videos/trending'),
-        api.get('/recommendations')
+        api.get('/videos/trending')
       ]);
 
       setFeatured(featuredRes.data[0]);
       setTrending(trendingRes.data);
-      setRecommendations(recsRes.data);
+
+      // Only fetch recommendations if user is logged in
+      const token = localStorage.getItem('token');
+      if (token) {
+        try {
+          const recsRes = await api.get('/recommendations');
+          setRecommendations(recsRes.data);
+        } catch (error) {
+          // User not authenticated or recommendations failed, skip
+          console.log('Recommendations not available');
+        }
+      }
 
       // Fetch videos by genre
-      const genreList = ['Action', 'Comedy', 'Drama', 'Horror', 'Sci-Fi'];
+      const genreList = ['Action', 'Comedy', 'Drama', 'Horror', 'Sci-Fi', 'Pets'];
       const genreData = {};
       
       for (const genre of genreList) {

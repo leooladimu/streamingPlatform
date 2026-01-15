@@ -264,7 +264,7 @@ const sampleVideos = [
   },
   {
     title: "Brookline Nights",
-    description: "A mockumentary on a monastery in Brookline, MA.",
+    description: "From a monastery in Brookline, Mass.",
     videoUrl:
       "https://res.cloudinary.com/di4vcvgtk/video/upload/v1768372413/IMG_3069_fh7poo.mp4",
     thumbnail:

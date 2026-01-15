@@ -6,8 +6,8 @@ dotenv.config();
 
 const sampleVideos = [
   {
-    title: "Dog Adventures in the Livingroom",
-    description: "Watch our puppy trying to walk!",
+    title: "Dog Eat Dog World",
+    description: "Age-impaired puppy whose legs don't work yet.",
     videoUrl:
       "https://res.cloudinary.com/di4vcvgtk/video/upload/v1768273395/-5555928177450095242_qjvxuc.mp4",
     thumbnail:
@@ -329,11 +329,11 @@ const sampleVideos = [
   },
   {
     title: "Kelso 21",
-    description: "A gangster family epic set in the lower Mojave Desert.",
+    description: "A gangster family epic in the lower Mojave Desert.",
     videoUrl:
-      "https://res.cloudinary.com/di4vcvgtk/video/upload/v1768372051/IMG_1349_koxthi.mp4",
+      "https://res.cloudinary.com/di4vcvgtk/video/upload/v1768511834/IMG_1349_c98ej7.mp4",
     thumbnail:
-      "https://res.cloudinary.com/di4vcvgtk/video/upload/v1768372051/IMG_1349_koxthi.jpg",
+      "https://res.cloudinary.com/di4vcvgtk/video/upload/v1768511834/IMG_1349_c98ej7.jpg",
     duration: 6,
     genre: "Drama",
     releaseYear: 2021,
@@ -343,13 +343,13 @@ const sampleVideos = [
     quality: [
       {
         resolution: "720p",
-        url: "https://res.cloudinary.com/di4vcvgtk/video/upload/v1768372051/IMG_1349_koxthi.mp4",
+        url: "https://res.cloudinary.com/di4vcvgtk/video/upload/v1768511834/IMG_1349_c98ej7.mp4",
       },
     ],
   },
   {
     title: "Dirty Texas",
-    description: "A gangster family epic set in the Texas state prison system.",
+    description: "Gangster family epic set in the Texas state prison system.",
     videoUrl:
       "https://res.cloudinary.com/di4vcvgtk/video/upload/v1768371957/8C1C2858-D2CB-4BA1-8D66-D7EE3EB87BFE_po4vru.mp4",
     thumbnail:
@@ -368,7 +368,7 @@ const sampleVideos = [
     ],
   },
   {
-    title: "Brookline Shine II",
+    title: "Brookline Shine",
     description: "A moonshiner in Boston's flashiest neighborhood, twice.",
     videoUrl:
       "https://res.cloudinary.com/di4vcvgtk/video/upload/v1768371779/IMG_0662_mjslyu.mp4",

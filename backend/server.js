@@ -5,6 +5,7 @@ import connectDB from './config/db.js';
 import authRoutes from './routes/authRoutes.js';
 import videoRoutes from './routes/videoRoutes.js';
 import recommendationRoutes from './routes/recommendationRoutes.js';
+import adminRoutes from './routes/adminRoutes.js';
 
 // Load env vars
 dotenv.config();
@@ -28,6 +29,7 @@ app.use(cors({
 app.use('/api/auth', authRoutes);
 app.use('/api/videos', videoRoutes);
 app.use('/api/recommendations', recommendationRoutes);
+app.use('/api/admin', adminRoutes);
 
 // Health check
 app.get('/api/health', (req, res) => {

@@ -92,7 +92,11 @@ const VideoPlayer = ({ video, onProgress, onEnded }) => {
   };
 
   const skipTime = (seconds) => {
-    videoRef.current.currentTime += seconds;
+    if (videoRef.current) {
+      const newTime = videoRef.current.currentTime + seconds;
+      // Clamp between 0 and duration
+      videoRef.current.currentTime = Math.max(0, Math.min(newTime, duration));
+    }
   };
 
   const formatTime = (time) => {

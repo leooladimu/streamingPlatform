@@ -167,11 +167,11 @@ const VideoPlayer = ({ video, onProgress, onEnded }) => {
             <button className="control-btn" onClick={togglePlay}>
               {playing ? '⏸' : '▶'}
             </button>
-            <button className="control-btn" onClick={() => skipTime(-10)}>
-              ⏪ 10s
+            <button className="control-btn" onClick={() => skipTime(-5)}>
+              ⏪ 5s
             </button>
-            <button className="control-btn" onClick={() => skipTime(10)}>
-              10s ⏩
+            <button className="control-btn" onClick={() => skipTime(5)}>
+              5s ⏩
             </button>
             <button className="control-btn" onClick={toggleMute}>
               {muted ? '🔇' : '🔊'}

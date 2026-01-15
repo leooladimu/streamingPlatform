@@ -25,6 +25,7 @@ const VideoCard = ({ video, onAddToList }) => {
       {hovered && (
         <div className="video-info">
           <h3>{video.title}</h3>
+          <p className="description">{video.description}</p>
           <div className="video-meta">
             <span className="rating">{video.rating}</span>
             <span>{video.releaseYear}</span>

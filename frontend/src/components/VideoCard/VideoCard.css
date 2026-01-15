@@ -40,6 +40,18 @@
   margin-bottom: 8px;
 }
 
+.video-info .description {
+  font-size: 13px;
+  color: #00ffff;
+  margin-bottom: 8px;
+  line-height: 1.4;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
 .video-meta {
   display: flex;
   gap: 10px;

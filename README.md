@@ -31,7 +31,7 @@ npm install -g vercel
 - Progress tracking and watch history
 - Fullscreen mode
 - Volume controls
-- Skip forward/backward (10 seconds)
+- Skip forward/backward (5 seconds)
 
 ### 🎯 Personalization
 - Collaborative filtering recommendation engine
@@ -339,7 +339,7 @@ The app is fully responsive with breakpoints:
 
 ## 🚀 Production Deployment
 
-### Backend (Heroku/Railway/Render)
+### Backend (Fly.io/Heroku/Railway)
 
 \`\`\`bash
 # Build command

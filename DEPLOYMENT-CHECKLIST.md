@@ -1,9 +1,10 @@
 # 📋 Pre-Deployment Checklist
 
-Use this checklist before deploying to Vercel.
+Use this checklist before deploying to Fly.io (backend) and Vercel (frontend).
 
 ## 🔧 Backend Preparation
 
+- [ ] Install Fly CLI: `curl -L https://fly.io/install.sh | sh`
 - [ ] Install Vercel CLI: `npm install -g vercel`
 - [ ] Create MongoDB Atlas account
 - [ ] Create a MongoDB cluster (free M0 tier)
@@ -27,7 +28,6 @@ Use this checklist before deploying to Vercel.
 - [ ] `MONGODB_URI` - MongoDB Atlas connection string
 - [ ] `JWT_SECRET` - Strong random secret (32+ chars)
 - [ ] `JWT_EXPIRE` - Token expiration (e.g., "7d")
-- [ ] `PORT` - Port number (5000)
 - [ ] `CLIENT_URL` - Will be updated after frontend deployment
 - [ ] `NODE_ENV` - Set to "production"
 
@@ -44,13 +44,14 @@ Use this checklist before deploying to Vercel.
 
 ## 🚀 Deployment Steps
 
-### Step 1: Deploy Backend
+### Step 1: Deploy Backend to Fly.io
 - [ ] `cd backend`
-- [ ] `vercel`
-- [ ] Follow prompts, name project
-- [ ] Copy backend URL (e.g., https://xyz.vercel.app)
-- [ ] Add environment variables in Vercel Dashboard
-- [ ] Redeploy: `vercel --prod`
+- [ ] `fly auth login`
+- [ ] `fly launch`
+- [ ] Follow prompts, choose app name and region
+- [ ] Copy backend URL (e.g., https://xyz.fly.dev)
+- [ ] Set environment variables: `fly secrets set KEY="value"`
+- [ ] Deploy: `fly deploy`
 
 ### Step 2: Deploy Frontend
 - [ ] Create `.env.production` with backend API URL
@@ -62,9 +63,9 @@ Use this checklist before deploying to Vercel.
 - [ ] Redeploy: `vercel --prod`
 
 ### Step 3: Update CORS
-- [ ] Go to backend Vercel project
-- [ ] Update `CLIENT_URL` environment variable with frontend URL
-- [ ] Redeploy backend: `vercel --prod`
+- [ ] `cd backend`
+- [ ] Update CLIENT_URL: `fly secrets set CLIENT_URL="https://frontend-url.vercel.app"`
+- [ ] Deploy: `fly deploy`
 
 ### Step 4: Seed Database (Optional)
 - [ ] Update local .env with production MongoDB URI
@@ -89,6 +90,7 @@ Use this checklist before deploying to Vercel.
 ## 🔍 Troubleshooting
 
 If something doesn't work:
+- [ ] Check Fly.io deployment logs: `fly logs`
 - [ ] Check Vercel deployment logs
 - [ ] Check browser console (F12)
 - [ ] Verify environment variables are set correctly

@@ -1,12 +1,19 @@
 #!/bin/bash
 
-# Vercel Environment Variables Setup Helper
-# This script helps you set environment variables in Vercel
+# Fly.io + Vercel Environment Variables Setup Helper
+# This script helps you set environment variables for Fly.io backend and Vercel frontend
 
-echo "🔐 Vercel Environment Variables Setup"
+echo "🔐 Environment Variables Setup"
 echo ""
-echo "This script will help you set up environment variables for both backend and frontend."
+echo "This script will help you set up environment variables for Fly.io backend and Vercel frontend."
 echo ""
+
+# Check if fly is installed
+if ! command -v fly &> /dev/null; then
+    echo "❌ Fly CLI is not installed."
+    echo "Install it from: https://fly.io/docs/hands-on/install-flyctl/"
+    exit 1
+fi
 
 # Check if vercel is installed
 if ! command -v vercel &> /dev/null; then
@@ -15,7 +22,7 @@ if ! command -v vercel &> /dev/null; then
     exit 1
 fi
 
-echo "Setting up BACKEND environment variables..."
+echo "Setting up BACKEND environment variables on Fly.io..."
 echo ""
 read -p "Enter your MongoDB URI: " MONGODB_URI
 read -p "Enter JWT Secret (min 32 chars): " JWT_SECRET
@@ -23,28 +30,27 @@ read -p "Enter Frontend URL (e.g., https://myapp.vercel.app): " CLIENT_URL
 
 cd backend
 
-echo "Adding backend environment variables to Vercel..."
-vercel env add MONGODB_URI production <<< "$MONGODB_URI"
-vercel env add JWT_SECRET production <<< "$JWT_SECRET"
-vercel env add JWT_EXPIRE production <<< "7d"
-vercel env add PORT production <<< "5000"
-vercel env add CLIENT_URL production <<< "$CLIENT_URL"
-vercel env add NODE_ENV production <<< "production"
+echo "Adding backend environment variables to Fly.io..."
+fly secrets set MONGODB_URI="$MONGODB_URI"
+fly secrets set JWT_SECRET="$JWT_SECRET"
+fly secrets set JWT_EXPIRE="7d"
+fly secrets set CLIENT_URL="$CLIENT_URL"
+fly secrets set NODE_ENV="production"
 
-echo "✅ Backend environment variables added!"
+echo "✅ Backend environment variables added to Fly.io!"
 echo ""
 
 cd ../frontend
 
-read -p "Enter Backend API URL (e.g., https://myapi.vercel.app/api): " API_URL
+read -p "Enter Backend API URL (e.g., https://myapp.fly.dev/api): " API_URL
 
 echo "Adding frontend environment variables to Vercel..."
 vercel env add VITE_API_URL production <<< "$API_URL"
 
-echo "✅ Frontend environment variables added!"
+echo "✅ Frontend environment variables added to Vercel!"
 echo ""
 echo "🎉 All environment variables are set!"
 echo ""
 echo "Next steps:"
-echo "1. Redeploy backend: cd backend && vercel --prod"
-echo "2. Redeploy frontend: cd frontend && vercel --prod"
+echo "1. Deploy backend: cd backend && fly deploy"
+echo "2. Deploy frontend: cd frontend && vercel --prod"

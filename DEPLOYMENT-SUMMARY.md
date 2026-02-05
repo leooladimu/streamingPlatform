@@ -1,11 +1,11 @@
-# 🎯 Vercel Deployment - Files Created
+# 🎯 Fly.io + Vercel Deployment - Files Created
 
-Your project is now ready for Vercel deployment! Here's what was added:
+Your project is now ready for deployment! Backend on Fly.io, Frontend on Vercel.
 
 ## 📁 New Files Created
 
 ### Configuration Files
-- ✅ **backend/vercel.json** - Vercel configuration for backend
+- ✅ **backend/fly.toml** - Fly.io configuration for backend (created during deployment)
 - ✅ **.gitignore** - Root gitignore file
 - ✅ **frontend/.env.example** - Frontend environment template
 - ✅ **frontend/.env.production.example** - Production environment template
@@ -15,6 +15,7 @@ Your project is now ready for Vercel deployment! Here's what was added:
 - ✅ **README-DEPLOYMENT.md** - Comprehensive deployment instructions
 - ✅ **DEPLOYMENT-CHECKLIST.md** - Step-by-step checklist
 - ✅ **deploy.sh** - Automated deployment script (executable)
+- ✅ **setup-env.sh** - Environment variables setup helper
 
 ## 🚀 Three Ways to Deploy
 
@@ -32,10 +33,13 @@ Follow [README-DEPLOYMENT.md](./README-DEPLOYMENT.md)
 ## 📋 Before You Deploy - Checklist
 
 ### Required:
-1. [ ] Create [MongoDB Atlas](https://cloud.mongodb.com) account
-2. [ ] Create a free cluster
-3. [ ] Get MongoDB connection string
-4. [ ] Install Vercel CLI: `npm install -g vercel`
+1. [ ] Create [Fly.io](https://fly.io/app/sign-up) account
+2. [ ] Create [Vercel](https://vercel.com/signup) account
+3. [ ] Create [MongoDB Atlas](https://cloud.mongodb.com) account
+4. [ ] Create a free cluster
+5. [ ] Get MongoDB connection string
+6. [ ] Install Fly CLI: `curl -L https://fly.io/install.sh | sh`
+7. [ ] Install Vercel CLI: `npm install -g vercel`
 
 ### Recommended:
 1. [ ] Review [DEPLOYMENT-CHECKLIST.md](./DEPLOYMENT-CHECKLIST.md)
@@ -46,42 +50,50 @@ Follow [README-DEPLOYMENT.md](./README-DEPLOYMENT.md)
 ## 🎬 Quick Command Reference
 
 ```bash
-# Install Vercel CLI
-npm install -g vercel
+# Install CLIs
+curl -L https://fly.io/install.sh | sh  # Fly CLI
+npm install -g vercel                   # Vercel CLI
 
-# Login to Vercel
+# Login
+fly auth login
 vercel login
 
-# Deploy backend
+# Deploy backend (Fly.io)
 cd backend
-vercel --prod
+fly launch
+fly deploy
 
-# Deploy frontend
+# Deploy frontend (Vercel)
 cd frontend
 vercel --prod
 
 # Check deployments
+fly status
 vercel ls
 
 # View logs
+fly logs
 vercel logs <deployment-url>
+
+# Set environment variables
+fly secrets set KEY="value"
+vercel env add KEY production
 ```
 
 ## 🔐 Environment Variables Needed
 
-### Backend (in Vercel Dashboard)
+### Backend (Fly.io Secrets)
 ```
 MONGODB_URI=mongodb+srv://user:pass@cluster.mongodb.net/dbname
 JWT_SECRET=your-secure-secret-minimum-32-characters
 JWT_EXPIRE=7d
-PORT=5000
 CLIENT_URL=https://your-frontend.vercel.app
 NODE_ENV=production
 ```
 
-### Frontend (in Vercel Dashboard)
+### Frontend (Vercel Environment Variables)
 ```
-VITE_API_URL=https://your-backend.vercel.app/api
+VITE_API_URL=https://your-backend.fly.dev/api
 ```
 
 ## 📱 After Deployment
@@ -94,16 +106,16 @@ VITE_API_URL=https://your-backend.vercel.app/api
 ## 🆘 Troubleshooting
 
 **CORS Errors?**
-→ Check that `CLIENT_URL` in backend matches your frontend URL exactly
+→ Check that `CLIENT_URL` in Fly.io secrets matches your frontend URL exactly
 
 **Database Connection Failed?**
 → Verify MongoDB Atlas connection string and IP whitelist (0.0.0.0/0)
 
 **API Not Working?**
-→ Check `VITE_API_URL` in frontend environment variables
+→ Check `VITE_API_URL` in Vercel environment variables
 
 **Changes Not Showing?**
-→ After updating environment variables, redeploy: `vercel --prod`
+→ After updating secrets: `fly deploy` | After updating Vercel env: `vercel --prod`
 
 ## 📚 Documentation
 

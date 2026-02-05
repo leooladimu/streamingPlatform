@@ -1,10 +1,11 @@
 # Quick Start Guide
 
-## 🚀 Deploy to Vercel in 5 Minutes
+## 🚀 Deploy in 5 Minutes
 
 ### Prerequisites
-1. [Vercel Account](https://vercel.com/signup) - Free
-2. [MongoDB Atlas Account](https://www.mongodb.com/cloud/atlas/register) - Free
+1. [Fly.io Account](https://fly.io/app/sign-up) - Free
+2. [Vercel Account](https://vercel.com/signup) - Free
+3. [MongoDB Atlas Account](https://www.mongodb.com/cloud/atlas/register) - Free
 
 ### Step 1: Set Up MongoDB Atlas (2 minutes)
 1. Create account at [MongoDB Atlas](https://cloud.mongodb.com)
@@ -16,48 +17,52 @@
 7. Click "Connect" → "Connect your application"
 8. Copy connection string (looks like: `mongodb+srv://user:pass@cluster.mongodb.net/`)
 
-### Step 2: Deploy Backend (1 minute)
+### Step 2: Deploy Backend to Fly.io (1 minute)
 ```bash
-# Install Vercel CLI
-npm install -g vercel
+# Install Fly CLI (if not installed)
+curl -L https://fly.io/install.sh | sh
 
 # Navigate to backend
 cd backend
 
-# Deploy
-vercel
+# Login and deploy
+fly auth login
+fly launch
 
 # When prompted:
-# - Link to existing project? No
-# - Project name? streaming-backend (or your choice)
-# - Directory? ./
-# - Override settings? No
+# - App name? streaming-backend (or your choice)
+# - Region? Choose closest to you
+# - Add database? No (we're using MongoDB Atlas)
+# - Deploy now? Yes
 ```
 
-**Copy the deployment URL** (e.g., https://streaming-backend.vercel.app)
+**Copy the deployment URL** (e.g., https://streaming-backend.fly.dev)
 
 ### Step 3: Add Backend Environment Variables (1 minute)
-Go to: [Vercel Dashboard](https://vercel.com/dashboard) → Your Backend Project → Settings → Environment Variables
+Set environment variables on Fly.io:
 
-Add these:
-```
-MONGODB_URI = mongodb+srv://your-user:your-pass@cluster.mongodb.net/netflix-clone
-JWT_SECRET = any-random-string-at-least-32-characters-long-make-it-secure
-JWT_EXPIRE = 7d
-PORT = 5000
-CLIENT_URL = https://your-frontend-url.vercel.app
-NODE_ENV = production
-```
-
-Click "Redeploy" after adding variables.
-
-### Step 4: Deploy Frontend (1 minute)
 ```bash
+cd backend
+fly secrets set MONGODB_URI="mongodb+srv://your-user:your-pass@cluster.mongodb.net/netflix-clone"
+fly secrets set JWT_SECRET="any-random-string-at-least-32-characters-long-make-it-secure"
+fly secrets set JWT_EXPIRE="7d"
+fly secrets set CLIENT_URL="https://your-frontend-url.vercel.app"
+fly secrets set NODE_ENV="production"
+
+# Deploy with new secrets
+fly deploy
+```
+
+### Step 4: Deploy Frontend to Vercel (1 minute)
+```bash
+# Install Vercel CLI (if not installed)
+npm install -g vercel
+
 # Navigate to frontend
 cd ../frontend
 
 # Create production env file
-echo "VITE_API_URL=https://your-backend-url.vercel.app/api" > .env.production
+echo "VITE_API_URL=https://your-backend-url.fly.dev/api" > .env.production
 
 # Deploy
 vercel
@@ -71,9 +76,11 @@ vercel
 **Copy the deployment URL** (e.g., https://streaming-frontend.vercel.app)
 
 ### Step 5: Update Backend CORS
-1. Go to Backend Project → Settings → Environment Variables
-2. Update `CLIENT_URL` to your frontend URL
-3. Click "Redeploy"
+```bash
+cd ../backend
+fly secrets set CLIENT_URL="https://your-frontend-url.vercel.app"
+fly deploy
+```
 
 ### Step 6: Seed Database (Optional)
 ```bash

@@ -31,11 +31,11 @@ const Navbar = () => {
             onClick={() => setShowProfileMenu(!showProfileMenu)}
           >
             <img 
-              src={user?.avatar || 'https://i.pravatar.cc/150?img=12'} 
+              src={user?.avatar || 'https://i.pravatar.cc/150?u=fake@pravatar.com'} 
               alt="👤"
               onError={(e) => {
                 e.target.onerror = null;
-                e.target.src = 'https://i.pravatar.cc/150?img=12';
+                e.target.src = 'https://i.pravatar.cc/150?u=fake@pravatar.com';
               }}
             />
             <span>▼</span>

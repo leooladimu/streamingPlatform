@@ -6,28 +6,6 @@ dotenv.config();
 
 const sampleVideos = [
   {
-    title: "Dog Eat Dog World",
-    description: "Age-impaired puppy whose legs don't work yet.",
-    videoUrl:
-      "https://res.cloudinary.com/di4vcvgtk/video/upload/v1768273395/-5555928177450095242_qjvxuc.mp4",
-    thumbnail:
-      "https://res.cloudinary.com/di4vcvgtk/video/upload/v1768273395/-5555928177450095242_qjvxuc.jpg",
-    duration: 6,
-    genre: "Pets",
-    releaseYear: 2026,
-    rating: "G",
-    cast: ["Penny"],
-    director: "Leo Oladimu",
-    quality: [
-      {
-        resolution: "720p",
-        url: "https://res.cloudinary.com/di4vcvgtk/video/upload/v1768273395/-5555928177450095242_qjvxuc.mp4",
-      },
-    ],
-    featured: true,
-    trending: true,
-  },
-  {
     title: "Bike Polo!",
     description: "Bike Polo Tournament, Boston, MA",
     videoUrl:
@@ -409,7 +387,8 @@ const sampleVideos = [
   },
   {
     title: "Chris's First Fight",
-    description: "A friend from my union in his first amateur fight.",
+    description: `Homie from my Local's
+     first amateur fight.`,
     videoUrl:
       "https://res.cloudinary.com/di4vcvgtk/video/upload/v1768371163/5590223084922228215_egpfpt.mp4",
     thumbnail:
@@ -427,6 +406,26 @@ const sampleVideos = [
       },
     ],
   },
+    {
+    title: "ACAB",
+    description: `A short film about police brutality.`,
+    videoUrl:
+      "https://res.cloudinary.com/di4vcvgtk/video/upload/v1768371159/6122693354657203944_yffhyk.mp4",
+    thumbnail:
+      "https://res.cloudinary.com/di4vcvgtk/video/upload/v1768371159/6122693354657203944_yffhyk.jpg",
+    duration: 22,
+    genre: "Drama",
+    releaseYear: 2022,
+    rating: "TV-MA",
+    cast: ["Leo Ọládimú"],
+    director: "Steven Knight",
+    quality: [
+      {
+        resolution: "720p",
+        url: "https://res.cloudinary.com/di4vcvgtk/video/upload/v1768371159/6122693354657203944_yffhyk.mp4",
+      },
+    ],
+  }
 ];
 
 const seedDatabase = async () => {

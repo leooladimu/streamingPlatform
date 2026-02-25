@@ -1,27 +1,27 @@
-import { useState } from 'react';
-import { useAuth } from '../../context/AuthContext';
-import api from '../../utils/api';
-import './Profile.css';
+import { useState } from "react";
+import { useAuth } from "../../context/AuthContext";
+import api from "../../utils/api";
+import "./Profile.css";
 
 const Profile = () => {
   const { user, logout } = useAuth();
   const [editing, setEditing] = useState(false);
-  const [name, setName] = useState(user?.name || '');
-  const [email, setEmail] = useState(user?.email || '');
+  const [name, setName] = useState(user?.name || "");
+  const [email, setEmail] = useState(user?.email || "");
   const [loading, setLoading] = useState(false);
-  const [message, setMessage] = useState('');
+  const [message, setMessage] = useState("");
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     setLoading(true);
-    setMessage('');
+    setMessage("");
 
     try {
-      await api.put('/auth/profile', { name, email });
-      setMessage('Profile updated successfully!');
+      await api.put("/auth/profile", { name, email });
+      setMessage("Profile updated successfully!");
       setEditing(false);
     } catch (error) {
-      setMessage(error.response?.data?.message || 'Failed to update profile');
+      setMessage(error.response?.data?.message || "Failed to update profile");
     } finally {
       setLoading(false);
     }
@@ -31,15 +31,19 @@ const Profile = () => {
     <div className="profile-page">
       <div className="profile-container">
         <h1>Account</h1>
-        
+
         <div className="profile-section">
           <div className="profile-avatar">
-            <img 
-              src={user?.avatar || 'https://occ-0-2430-2433.1.nflxso.net/dnm/api/v6/K6hjPJd6cR6FpVELC5Pd6ovHRSk/AAAABbme8JMz4rEKFJhtzpOKWFJ_6qX-0y5wwWyYvBhWS0VKFLa289dZ5zvRBggmFVWVPL2AAYE8xevD4jjLZjWumNo.png?r=a41'} 
+            <img
+              src={
+                user?.avatar ||
+                "https://occ-0-2430-2433.1.nflxso.net/dnm/api/v6/K6hjPJd6cR6FpVELC5Pd6ovHRSk/AAAABbme8JMz4rEKFJhtzpOKWFJ_6qX-0y5wwWyYvBhWS0VKFLa289dZ5zvRBggmFVWVPL2AAYE8xevD4jjLZjWumNo.png?r=a41"
+              }
               alt="Profile"
               onError={(e) => {
                 e.target.onerror = null;
-                e.target.src = 'https://occ-0-2430-2433.1.nflxso.net/dnm/api/v6/K6hjPJd6cR6FpVELC5Pd6ovHRSk/AAAABbme8JMz4rEKFJhtzpOKWFJ_6qX-0y5wwWyYvBhWS0VKFLa289dZ5zvRBggmFVWVPL2AAYE8xevD4jjLZjWumNo.png?r=a41';
+                e.target.src =
+                  "https://occ-0-2430-2433.1.nflxso.net/dnm/api/v6/K6hjPJd6cR6FpVELC5Pd6ovHRSk/AAAABbme8JMz4rEKFJhtzpOKWFJ_6qX-0y5wwWyYvBhWS0VKFLa289dZ5zvRBggmFVWVPL2AAYE8xevD4jjLZjWumNo.png?r=a41";
               }}
             />
           </div>
@@ -67,7 +71,7 @@ const Profile = () => {
               </div>
               <div className="form-actions">
                 <button type="submit" disabled={loading}>
-                  {loading ? 'Saving...' : 'Save'}
+                  {loading ? "Saving..." : "Save"}
                 </button>
                 <button type="button" onClick={() => setEditing(false)}>
                   Cancel

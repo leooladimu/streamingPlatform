@@ -1,8 +1,8 @@
-import { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
-import api from '../../utils/api';
-import VideoRow from '../../components/VideoRow/VideoRow';
-import './Home.css';
+import { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
+import api from "../../utils/api";
+import VideoRow from "../../components/VideoRow/VideoRow";
+import "./Home.css";
 
 const Home = () => {
   const [featured, setFeatured] = useState(null);
@@ -18,37 +18,44 @@ const Home = () => {
     try {
       // Fetch featured and trending (public endpoints)
       const [featuredRes, trendingRes] = await Promise.all([
-        api.get('/videos/featured'),
-        api.get('/videos/trending')
+        api.get("/videos/featured"),
+        api.get("/videos/trending"),
       ]);
 
       setFeatured(featuredRes.data[0]);
       setTrending(trendingRes.data);
 
       // Only fetch recommendations if user is logged in
-      const token = localStorage.getItem('token');
+      const token = localStorage.getItem("token");
       if (token) {
         try {
-          const recsRes = await api.get('/recommendations');
+          const recsRes = await api.get("/recommendations");
           setRecommendations(recsRes.data);
         } catch (error) {
           // User not authenticated or recommendations failed, skip
-          console.log('Recommendations not available');
+          console.log("Recommendations not available");
         }
       }
 
       // Fetch videos by genre
-      const genreList = ['Action', 'Comedy', 'Drama', 'Horror', 'Sci-Fi', 'Pets'];
+      const genreList = [
+        "Action",
+        "Comedy",
+        "Drama",
+        "Horror",
+        "Sci-Fi",
+        "Pets",
+      ];
       const genreData = {};
-      
+
       for (const genre of genreList) {
         const res = await api.get(`/videos/genre/${genre}`);
         genreData[genre] = res.data;
       }
-      
+
       setGenres(genreData);
     } catch (error) {
-      console.error('Error fetching data:', error);
+      console.error("Error fetching data:", error);
     }
   };
 
@@ -56,51 +63,51 @@ const Home = () => {
     try {
       // Optimistically update the UI
       const updatedVideo = {
-        ...trending.find(v => v._id === videoId) || 
-        Object.values(genres).flat().find(v => v._id === videoId) ||
-        (featured?._id === videoId ? featured : null)
+        ...(trending.find((v) => v._id === videoId) ||
+          Object.values(genres)
+            .flat()
+            .find((v) => v._id === videoId) ||
+          (featured?._id === videoId ? featured : null)),
       };
-      
+
       if (!updatedVideo) return;
-      
+
       // Toggle the 'inMyList' status
       updatedVideo.inMyList = !updatedVideo.inMyList;
-      
+
       // Make the API call
       await api.post(`/videos/${videoId}/mylist`, {
-        action: updatedVideo.inMyList ? 'add' : 'remove'
+        action: updatedVideo.inMyList ? "add" : "remove",
       });
-      
+
       // Update the UI state
       if (featured?._id === videoId) {
         setFeatured(updatedVideo);
       }
-      
+
       // Update trending videos
-      setTrending(prev => 
-        prev.map(v => v._id === videoId ? updatedVideo : v)
+      setTrending((prev) =>
+        prev.map((v) => (v._id === videoId ? updatedVideo : v)),
       );
-      
+
       // Update genre lists
-      setGenres(prev => {
+      setGenres((prev) => {
         const newGenres = { ...prev };
-        Object.keys(newGenres).forEach(genre => {
-          newGenres[genre] = newGenres[genre].map(v => 
-            v._id === videoId ? updatedVideo : v
+        Object.keys(newGenres).forEach((genre) => {
+          newGenres[genre] = newGenres[genre].map((v) =>
+            v._id === videoId ? updatedVideo : v,
           );
         });
         return newGenres;
       });
-      
+
       // Show feedback to user
-      alert(updatedVideo.inMyList 
-        ? 'Added to My List!' 
-        : 'Removed from My List!'
+      alert(
+        updatedVideo.inMyList ? "Added to My List!" : "Removed from My List!",
       );
-      
     } catch (error) {
-      console.error('Error updating list:', error);
-      alert('Failed to update your list. Please try again.');
+      console.error("Error updating list:", error);
+      alert("Failed to update your list. Please try again.");
     }
   };
 
@@ -110,7 +117,7 @@ const Home = () => {
 
   return (
     <div className="home">
-      <div 
+      <div
         className="hero"
         style={{ backgroundImage: `url(${featured.thumbnail})` }}
       >
@@ -121,7 +128,10 @@ const Home = () => {
             <Link to={`/watch/${featured._id}`} className="btn-play">
               ▶ Play
             </Link>
-            <button className="btn-info" onClick={() => handleAddToList(featured._id)}>
+            <button
+              className="btn-info"
+              onClick={() => handleAddToList(featured._id)}
+            >
               ⓘ More Info
             </button>
           </div>
@@ -131,24 +141,24 @@ const Home = () => {
 
       <div className="content">
         {recommendations.length > 0 && (
-          <VideoRow 
-            title="Recommended For You" 
-            videos={recommendations} 
+          <VideoRow
+            title="Recommended For You"
+            videos={recommendations}
             onAddToList={handleAddToList}
           />
         )}
-        
-        <VideoRow 
-          title="Trending Now" 
-          videos={trending} 
+
+        <VideoRow
+          title="Trending Now"
+          videos={trending}
           onAddToList={handleAddToList}
         />
 
         {Object.entries(genres).map(([genre, videos]) => (
-          <VideoRow 
+          <VideoRow
             key={genre}
-            title={genre} 
-            videos={videos} 
+            title={genre}
+            videos={videos}
             onAddToList={handleAddToList}
           />
         ))}

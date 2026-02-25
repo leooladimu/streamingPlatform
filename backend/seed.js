@@ -406,7 +406,7 @@ const sampleVideos = [
       },
     ],
   },
-    {
+  {
     title: "ACAB",
     description: `A short film about police brutality.`,
     videoUrl:
@@ -425,7 +425,7 @@ const sampleVideos = [
         url: "https://res.cloudinary.com/di4vcvgtk/video/upload/v1768371159/6122693354657203944_yffhyk.mp4",
       },
     ],
-  }
+  },
 ];
 
 const seedDatabase = async () => {
@@ -445,10 +445,10 @@ const seedDatabase = async () => {
     // Display summary
     console.log("\n📊 Seeding Summary:");
     console.log(
-      `- Featured videos: ${videos.filter((v) => v.featured).length}`
+      `- Featured videos: ${videos.filter((v) => v.featured).length}`,
     );
     console.log(
-      `- Trending videos: ${videos.filter((v) => v.trending).length}`
+      `- Trending videos: ${videos.filter((v) => v.trending).length}`,
     );
     console.log("\nGenres:");
     const genres = {};

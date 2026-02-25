@@ -1,9 +1,9 @@
-import { useState, useEffect } from 'react';
-import { useParams, useNavigate } from 'react-router-dom';
-import api from '../../utils/api';
-import VideoPlayer from '../../components/VideoPlayer/VideoPlayer';
-import VideoRow from '../../components/VideoRow/VideoRow';
-import './Watch.css';
+import { useState, useEffect } from "react";
+import { useParams, useNavigate } from "react-router-dom";
+import api from "../../utils/api";
+import VideoPlayer from "../../components/VideoPlayer/VideoPlayer";
+import VideoRow from "../../components/VideoRow/VideoRow";
+import "./Watch.css";
 
 const Watch = () => {
   const { id } = useParams();
@@ -20,14 +20,14 @@ const Watch = () => {
     try {
       const [videoRes, similarRes] = await Promise.all([
         api.get(`/videos/${id}`),
-        api.get(`/recommendations/similar/${id}`)
+        api.get(`/recommendations/similar/${id}`),
       ]);
 
       setVideo(videoRes.data);
       setSimilar(similarRes.data);
     } catch (error) {
-      console.error('Error fetching video:', error);
-      navigate('/');
+      console.error("Error fetching video:", error);
+      navigate("/");
     } finally {
       setLoading(false);
     }
@@ -37,10 +37,10 @@ const Watch = () => {
     try {
       await api.post(`/videos/${id}/watch`, {
         progress,
-        completed: progress >= 90
+        completed: progress >= 90,
       });
     } catch (error) {
-      console.error('Error updating progress:', error);
+      console.error("Error updating progress:", error);
     }
   };
 
@@ -48,19 +48,19 @@ const Watch = () => {
     try {
       await api.post(`/videos/${id}/watch`, {
         progress: 100,
-        completed: true
+        completed: true,
       });
     } catch (error) {
-      console.error('Error marking as completed:', error);
+      console.error("Error marking as completed:", error);
     }
   };
 
   const handleAddToList = async (videoId) => {
     try {
       await api.post(`/videos/${videoId}/mylist`);
-      alert('Added to My List!');
+      alert("Added to My List!");
     } catch (error) {
-      console.error('Error adding to list:', error);
+      console.error("Error adding to list:", error);
     }
   };
 
@@ -77,9 +77,9 @@ const Watch = () => {
       <button className="back-button" onClick={() => navigate(-1)}>
         ← Back
       </button>
-      
-      <VideoPlayer 
-        video={video} 
+
+      <VideoPlayer
+        video={video}
         onProgress={handleProgress}
         onEnded={handleEnded}
       />
@@ -94,11 +94,11 @@ const Watch = () => {
           </div>
           <p className="description">{video.description}</p>
           <div className="video-genres">
-            <strong>Genres:</strong> {video.genre?.join(', ')}
+            <strong>Genres:</strong> {video.genre?.join(", ")}
           </div>
           {video.cast && video.cast.length > 0 && (
             <div className="video-cast">
-              <strong>Cast:</strong> {video.cast.join(', ')}
+              <strong>Cast:</strong> {video.cast.join(", ")}
             </div>
           )}
           {video.director && (
@@ -109,8 +109,8 @@ const Watch = () => {
         </div>
 
         {similar.length > 0 && (
-          <VideoRow 
-            title="More Like This" 
+          <VideoRow
+            title="More Like This"
             videos={similar}
             onAddToList={handleAddToList}
           />

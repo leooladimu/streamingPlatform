@@ -1,11 +1,11 @@
-import { useState } from 'react';
-import { Link } from 'react-router-dom';
-import './VideoCard.css';
+import { useState } from "react";
+import { Link } from "react-router-dom";
+import "./VideoCard.css";
 
 const VideoCard = ({ video, onAddToList }) => {
   const [hovered, setHovered] = useState(false);
   const [isInList, setIsInList] = useState(video.inMyList || false);
-  
+
   const handleAddToList = (e) => {
     e.preventDefault();
     setIsInList(!isInList);
@@ -13,7 +13,7 @@ const VideoCard = ({ video, onAddToList }) => {
   };
 
   return (
-    <div 
+    <div
       className="video-card"
       onMouseEnter={() => setHovered(true)}
       onMouseLeave={() => setHovered(false)}
@@ -21,7 +21,7 @@ const VideoCard = ({ video, onAddToList }) => {
       <Link to={`/watch/${video._id}`}>
         <img src={video.thumbnail} alt={video.title} className="thumbnail" />
       </Link>
-      
+
       {hovered && (
         <div className="video-info">
           <h3>{video.title}</h3>
@@ -40,11 +40,11 @@ const VideoCard = ({ video, onAddToList }) => {
             <Link to={`/watch/${video._id}`} className="play-btn">
               ▶ Play
             </Link>
-            <button 
-              className={`add-btn ${isInList ? 'in-list' : ''}`} 
+            <button
+              className={`add-btn ${isInList ? "in-list" : ""}`}
               onClick={handleAddToList}
             >
-              {isInList ? '✓ In My List' : '+ My List'}
+              {isInList ? "✓ In My List" : "+ My List"}
             </button>
           </div>
         </div>

@@ -1,5 +1,5 @@
-import { useState, useRef, useEffect } from 'react';
-import './VideoPlayer.css';
+import { useState, useRef, useEffect } from "react";
+import "./VideoPlayer.css";
 
 const VideoPlayer = ({ video, onProgress, onEnded }) => {
   const videoRef = useRef(null);
@@ -10,7 +10,7 @@ const VideoPlayer = ({ video, onProgress, onEnded }) => {
   const [muted, setMuted] = useState(false);
   const [fullscreen, setFullscreen] = useState(false);
   const [showControls, setShowControls] = useState(true);
-  const [quality, setQuality] = useState('1080p');
+  const [quality, setQuality] = useState("1080p");
   const [showQualityMenu, setShowQualityMenu] = useState(false);
   const [subtitle, setSubtitle] = useState(null);
   const [showSubtitleMenu, setShowSubtitleMenu] = useState(false);
@@ -39,14 +39,14 @@ const VideoPlayer = ({ video, onProgress, onEnded }) => {
       }
     };
 
-    video.addEventListener('timeupdate', handleTimeUpdate);
-    video.addEventListener('loadedmetadata', handleLoadedMetadata);
-    video.addEventListener('ended', handleEnded);
+    video.addEventListener("timeupdate", handleTimeUpdate);
+    video.addEventListener("loadedmetadata", handleLoadedMetadata);
+    video.addEventListener("ended", handleEnded);
 
     return () => {
-      video.removeEventListener('timeupdate', handleTimeUpdate);
-      video.removeEventListener('loadedmetadata', handleLoadedMetadata);
-      video.removeEventListener('ended', handleEnded);
+      video.removeEventListener("timeupdate", handleTimeUpdate);
+      video.removeEventListener("loadedmetadata", handleLoadedMetadata);
+      video.removeEventListener("ended", handleEnded);
     };
   }, [onProgress, onEnded]);
 
@@ -103,11 +103,11 @@ const VideoPlayer = ({ video, onProgress, onEnded }) => {
     const hours = Math.floor(time / 3600);
     const minutes = Math.floor((time % 3600) / 60);
     const seconds = Math.floor(time % 60);
-    
+
     if (hours > 0) {
-      return `${hours}:${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
+      return `${hours}:${minutes.toString().padStart(2, "0")}:${seconds.toString().padStart(2, "0")}`;
     }
-    return `${minutes}:${seconds.toString().padStart(2, '0')}`;
+    return `${minutes}:${seconds.toString().padStart(2, "0")}`;
   };
 
   const handleMouseMove = () => {
@@ -121,7 +121,9 @@ const VideoPlayer = ({ video, onProgress, onEnded }) => {
   };
 
   const changeQuality = (newQuality) => {
-    const qualityVideo = video.quality?.find(q => q.resolution === newQuality);
+    const qualityVideo = video.quality?.find(
+      (q) => q.resolution === newQuality,
+    );
     if (qualityVideo) {
       const currentTime = videoRef.current.currentTime;
       setQuality(newQuality);
@@ -157,15 +159,18 @@ const VideoPlayer = ({ video, onProgress, onEnded }) => {
         ))}
       </video>
 
-      <div className={`video-controls ${showControls ? 'show' : ''}`}>
+      <div className={`video-controls ${showControls ? "show" : ""}`}>
         <div className="progress-bar" onClick={handleSeek}>
-          <div className="progress-filled" style={{ width: `${(currentTime / duration) * 100}%` }}></div>
+          <div
+            className="progress-filled"
+            style={{ width: `${(currentTime / duration) * 100}%` }}
+          ></div>
         </div>
 
         <div className="controls-row">
           <div className="controls-left">
             <button className="control-btn" onClick={togglePlay}>
-              {playing ? '⏸' : '▶'}
+              {playing ? "⏸" : "▶"}
             </button>
             <button className="control-btn" onClick={() => skipTime(-5)}>
               ⏪ 5s
@@ -174,7 +179,7 @@ const VideoPlayer = ({ video, onProgress, onEnded }) => {
               5s ⏩
             </button>
             <button className="control-btn" onClick={toggleMute}>
-              {muted ? '🔇' : '🔊'}
+              {muted ? "🔇" : "🔊"}
             </button>
             <input
               type="range"
@@ -192,14 +197,20 @@ const VideoPlayer = ({ video, onProgress, onEnded }) => {
 
           <div className="controls-right">
             <div className="menu-container">
-              <button className="control-btn" onClick={() => setShowSubtitleMenu(!showSubtitleMenu)}>
+              <button
+                className="control-btn"
+                onClick={() => setShowSubtitleMenu(!showSubtitleMenu)}
+              >
                 CC
               </button>
               {showSubtitleMenu && (
                 <div className="quality-menu">
                   <div onClick={() => changeSubtitle(null)}>Off</div>
                   {video.subtitles?.map((sub) => (
-                    <div key={sub.language} onClick={() => changeSubtitle(sub.language)}>
+                    <div
+                      key={sub.language}
+                      onClick={() => changeSubtitle(sub.language)}
+                    >
                       {sub.language.toUpperCase()}
                     </div>
                   ))}
@@ -208,13 +219,19 @@ const VideoPlayer = ({ video, onProgress, onEnded }) => {
             </div>
 
             <div className="menu-container">
-              <button className="control-btn" onClick={() => setShowQualityMenu(!showQualityMenu)}>
+              <button
+                className="control-btn"
+                onClick={() => setShowQualityMenu(!showQualityMenu)}
+              >
                 {quality}
               </button>
               {showQualityMenu && (
                 <div className="quality-menu">
                   {video.quality?.map((q) => (
-                    <div key={q.resolution} onClick={() => changeQuality(q.resolution)}>
+                    <div
+                      key={q.resolution}
+                      onClick={() => changeQuality(q.resolution)}
+                    >
                       {q.resolution}
                     </div>
                   ))}
@@ -223,7 +240,7 @@ const VideoPlayer = ({ video, onProgress, onEnded }) => {
             </div>
 
             <button className="control-btn" onClick={toggleFullscreen}>
-              {fullscreen ? '⛶' : '⛶'}
+              {fullscreen ? "⛶" : "⛶"}
             </button>
           </div>
         </div>

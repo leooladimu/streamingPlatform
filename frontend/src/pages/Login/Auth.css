@@ -1,7 +1,7 @@
 .auth-page {
   min-height: 100vh;
-  background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)),
-              url('https://assets.nflxext.com/ffe/siteui/vlv3/web/background.jpg');
+  background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)),
+    url('https://assets.nflxext.com/ffe/siteui/vlv3/web/background.jpg');
   background-size: cover;
   background-position: center;
 }

@@ -1,19 +1,25 @@
-import Video from '../models/Video.js';
-import User from '../models/User.js';
+import Video from "../models/Video.js";
+import User from "../models/User.js";
 
 // @desc    Get all videos with filtering and pagination
 // @route   GET /api/videos
 // @access  Public
 export const getVideos = async (req, res) => {
   try {
-    const { genre, search, page = 1, limit = 20, sort = '-createdAt' } = req.query;
-    
+    const {
+      genre,
+      search,
+      page = 1,
+      limit = 20,
+      sort = "-createdAt",
+    } = req.query;
+
     const query = {};
-    
+
     if (genre) {
       query.genre = genre;
     }
-    
+
     if (search) {
       query.$text = { $search: search };
     }
@@ -30,7 +36,7 @@ export const getVideos = async (req, res) => {
       videos,
       totalPages: Math.ceil(count / limit),
       currentPage: page,
-      total: count
+      total: count,
     });
   } catch (error) {
     res.status(500).json({ message: error.message });
@@ -48,10 +54,10 @@ export const getVideo = async (req, res) => {
       // Increment view count
       video.views += 1;
       await video.save();
-      
+
       res.json(video);
     } else {
-      res.status(404).json({ message: 'Video not found' });
+      res.status(404).json({ message: "Video not found" });
     }
   } catch (error) {
     res.status(500).json({ message: error.message });
@@ -76,7 +82,7 @@ export const getFeaturedVideos = async (req, res) => {
 export const getTrendingVideos = async (req, res) => {
   try {
     const videos = await Video.find({ trending: true })
-      .sort('-views')
+      .sort("-views")
       .limit(20);
     res.json(videos);
   } catch (error) {
@@ -90,7 +96,7 @@ export const getTrendingVideos = async (req, res) => {
 export const getVideosByGenre = async (req, res) => {
   try {
     const videos = await Video.find({ genre: req.params.genre })
-      .sort('-views')
+      .sort("-views")
       .limit(20);
     res.json(videos);
   } catch (error) {
@@ -108,30 +114,32 @@ export const addToWatchHistory = async (req, res) => {
     const video = await Video.findById(req.params.id);
 
     if (!video) {
-      return res.status(404).json({ message: 'Video not found' });
+      return res.status(404).json({ message: "Video not found" });
     }
 
     // Check if video already in watch history
     const existingIndex = user.watchHistory.findIndex(
-      item => item.video.toString() === req.params.id
+      (item) => item.video.toString() === req.params.id,
     );
 
     if (existingIndex > -1) {
       // Update existing entry
-      user.watchHistory[existingIndex].progress = progress || user.watchHistory[existingIndex].progress;
-      user.watchHistory[existingIndex].completed = completed || user.watchHistory[existingIndex].completed;
+      user.watchHistory[existingIndex].progress =
+        progress || user.watchHistory[existingIndex].progress;
+      user.watchHistory[existingIndex].completed =
+        completed || user.watchHistory[existingIndex].completed;
       user.watchHistory[existingIndex].watchedAt = Date.now();
     } else {
       // Add new entry
       user.watchHistory.unshift({
         video: req.params.id,
         progress: progress || 0,
-        completed: completed || false
+        completed: completed || false,
       });
     }
 
     await user.save();
-    res.json({ message: 'Added to watch history' });
+    res.json({ message: "Added to watch history" });
   } catch (error) {
     res.status(500).json({ message: error.message });
   }
@@ -151,12 +159,12 @@ export const toggleMyList = async (req, res) => {
       // Remove from list
       user.myList.splice(index, 1);
       await user.save();
-      res.json({ message: 'Removed from My List', inList: false });
+      res.json({ message: "Removed from My List", inList: false });
     } else {
       // Add to list
       user.myList.push(videoId);
       await user.save();
-      res.json({ message: 'Added to My List', inList: true });
+      res.json({ message: "Added to My List", inList: true });
     }
   } catch (error) {
     res.status(500).json({ message: error.message });

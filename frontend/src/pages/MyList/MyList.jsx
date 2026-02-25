@@ -1,9 +1,9 @@
-import { useState, useEffect } from 'react';
-import { useAuth } from '../../context/AuthContext';
-import { useLocation } from 'react-router-dom';
-import api from '../../utils/api';
-import VideoRow from '../../components/VideoRow/VideoRow';
-import './MyList.css';
+import { useState, useEffect } from "react";
+import { useAuth } from "../../context/AuthContext";
+import { useLocation } from "react-router-dom";
+import api from "../../utils/api";
+import VideoRow from "../../components/VideoRow/VideoRow";
+import "./MyList.css";
 
 const MyList = () => {
   const { user } = useAuth();
@@ -19,23 +19,23 @@ const MyList = () => {
   const fetchMyList = async () => {
     try {
       setLoading(true);
-      console.log('Fetching user data...');
-      
+      console.log("Fetching user data...");
+
       // Get the user's data with populated myList
-      const { data: userData } = await api.get('/auth/me');
-      console.log('User data:', userData);
-      console.log('MyList from user:', userData.myList);
-      
+      const { data: userData } = await api.get("/auth/me");
+      console.log("User data:", userData);
+      console.log("MyList from user:", userData.myList);
+
       // The backend already populates myList with full video objects
       if (userData.myList && userData.myList.length > 0) {
         setMyList(userData.myList);
-        console.log('Set myList with', userData.myList.length, 'videos');
+        console.log("Set myList with", userData.myList.length, "videos");
       } else {
-        console.log('No videos in myList');
+        console.log("No videos in myList");
         setMyList([]);
       }
     } catch (error) {
-      console.error('Error fetching my list:', error);
+      console.error("Error fetching my list:", error);
       // Optionally show an error message to the user
     } finally {
       setLoading(false);
@@ -45,17 +45,17 @@ const MyList = () => {
   const handleRemoveFromList = async (videoId) => {
     try {
       // Optimistically update the UI
-      setMyList(prevList => prevList.filter(v => v._id !== videoId));
-      
+      setMyList((prevList) => prevList.filter((v) => v._id !== videoId));
+
       // Make the API call to update the backend
       await api.post(`/videos/${videoId}/mylist`, {
-        action: 'remove'
+        action: "remove",
       });
-      
+
       // Refresh the list to ensure it's in sync with the backend
       await fetchMyList();
     } catch (error) {
-      console.error('Error removing from list:', error);
+      console.error("Error removing from list:", error);
       // If there's an error, refetch the list to restore the correct state
       fetchMyList();
     }
@@ -72,8 +72,8 @@ const MyList = () => {
         <div className="loading">Loading your list...</div>
       ) : myList.length > 0 ? (
         <>
-          <VideoRow 
-            videos={myList} 
+          <VideoRow
+            videos={myList}
             onRemoveFromList={handleRemoveFromList}
             showRemoveButton={true}
           />

@@ -1,19 +1,19 @@
-import { useState } from 'react';
-import { Link } from 'react-router-dom';
-import { useAuth } from '../../context/AuthContext';
-import './Navbar.css';
+import { useState } from "react";
+import { Link } from "react-router-dom";
+import { useAuth } from "../../context/AuthContext";
+import "./Navbar.css";
 
 const Navbar = () => {
   const { user, logout } = useAuth();
   const [showProfileMenu, setShowProfileMenu] = useState(false);
   const [scrolled, setScrolled] = useState(false);
 
-  window.addEventListener('scroll', () => {
+  window.addEventListener("scroll", () => {
     setScrolled(window.scrollY > 50);
   });
 
   return (
-    <nav className={`navbar ${scrolled ? 'scrolled' : ''}`}>
+    <nav className={`navbar ${scrolled ? "scrolled" : ""}`}>
       <div className="navbar-left">
         <Link to="/" className="logo">
           ỌLEOFLIX
@@ -26,16 +26,18 @@ const Navbar = () => {
 
       <div className="navbar-right">
         <div className="profile-menu">
-          <button 
+          <button
             className="profile-btn"
             onClick={() => setShowProfileMenu(!showProfileMenu)}
           >
-            <img 
-              src={user?.avatar || 'https://i.pravatar.cc/150?u=fake@pravatar.com'} 
+            <img
+              src={
+                user?.avatar || "https://i.pravatar.cc/150?u=fake@pravatar.com"
+              }
               alt="👤"
               onError={(e) => {
                 e.target.onerror = null;
-                e.target.src = 'https://i.pravatar.cc/150?u=fake@pravatar.com';
+                e.target.src = "https://i.pravatar.cc/150?u=fake@pravatar.com";
               }}
             />
             <span>▼</span>
